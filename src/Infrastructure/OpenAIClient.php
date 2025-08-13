@@ -9,7 +9,8 @@ class OpenAIClient {
     }
 
     public function adjust_content( string $content ): array {
-        $prompt = 'You fix only grammar and spelling without changing meaning or structure. '
+        $prompt = 'Improve grammar, spelling, and on-page SEO (titles, headings, meta description, keyword usage) '
+            . 'while preserving the original meaning and general structure. '
             . 'Return a JSON object with keys "content" (the corrected text), '
             . '"changes" (array of brief change descriptions), and "explanation" '
             . 'explaining when no changes are needed.';
