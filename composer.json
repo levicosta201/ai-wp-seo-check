@@ -1,0 +1,12 @@
+{
+    "name": "openai/ai-wp-seo-check",
+    "description": "WordPress plugin to adjust SEO content using OpenAI",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "AiWpSeoCheck\\": "src/"
+        }
+    },
+    "require": {}
+}
