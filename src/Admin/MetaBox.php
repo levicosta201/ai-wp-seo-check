@@ -25,6 +25,7 @@ class MetaBox {
     public static function render_box(): void {
         wp_nonce_field( 'ai_wp_seo_check', 'ai_wp_seo_check_nonce' );
         echo '<button type="button" class="button" id="ai-wp-seo-check-adjust">' . esc_html__( 'Adjust SEO', 'ai-wp-seo-check' ) . '</button>';
+        echo '<progress class="ai-wp-seo-check-progress" style="width:100%;display:none;margin-top:10px;"></progress>';
         echo '<p class="ai-wp-seo-check-feedback" style="margin-top:10px;"></p>';
     }
 
@@ -62,10 +63,23 @@ class MetaBox {
         $client  = new OpenAIClient( $api_key );
         $result  = $client->adjust_content( $content );
 
-        if ( $result === $content ) {
-            wp_send_json_error( __( 'No changes made.', 'ai-wp-seo-check' ) );
+        if ( ! empty( $result['changes'] ) && $result['content'] !== $content ) {
+            wp_send_json_success(
+                [
+                    'content' => $result['content'],
+                    'changes' => $result['changes'],
+                    'changed' => true,
+                ]
+            );
         }
 
-        wp_send_json_success( [ 'content' => $result ] );
+        $message = $result['explanation'] ?? __( 'No SEO changes required.', 'ai-wp-seo-check' );
+        wp_send_json_success(
+            [
+                'content' => $content,
+                'message' => $message,
+                'changed' => false,
+            ]
+        );
     }
 }
