@@ -5,7 +5,7 @@
  * Version:           0.1.3
  * Requires at least: 6.3
  * Requires PHP:      8.1
- * Author:            OpenAI
+ * Author:            Digivate
  * Text Domain:       ai-wp-seo-check
  */
 

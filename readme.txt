@@ -1,5 +1,5 @@
 === AI WP SEO Check ===
-Contributors: openai
+Contributors: digivate
 Tags: seo, ai, openai
 Requires at least: 6.3
 Tested up to: 6.4
