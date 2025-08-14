@@ -4,7 +4,7 @@ Tags: seo, ai, openai
 Requires at least: 6.3
 Tested up to: 6.4
 Requires PHP: 8.1
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 
 Adjust post and page content SEO using OpenAI suggestions.
@@ -22,6 +22,9 @@ AI WP SEO Check helps you improve grammar, spelling, and on-page SEO in your pos
 No. You can review the suggested content before updating the post.
 
 == Changelog ==
+= 0.1.3 =
+* Detect content saved in ACF Page Blocks when the main editor is empty.
+
 = 0.1.2 =
 * Expand prompt to optimize SEO in addition to grammar corrections.
 
