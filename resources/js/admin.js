@@ -12,7 +12,25 @@
                 return;
             }
             var editorSelect = window.wp && wp.data && wp.data.select ? wp.data.select('core/editor') : null;
-            var content = editorSelect && editorSelect.getEditedPostContent ? editorSelect.getEditedPostContent() : $('#content').val();
+            var content = editorSelect && editorSelect.getEditedPostContent
+                ? editorSelect.getEditedPostContent()
+                : $('#content').val();
+            if (!content || !content.trim()) {
+                content = '';
+                $('.acf-field-wysiwyg textarea.wp-editor-area:not(:disabled)').not('#content').each(function(){
+                    var val = $(this).val();
+                    var id = $(this).attr('id');
+                    if (typeof tinyMCE !== 'undefined') {
+                        var editor = tinyMCE.get(id);
+                        if (editor && !editor.isHidden()) {
+                            val = editor.getContent();
+                        }
+                    }
+                    if (val) {
+                        content += val + "\n";
+                    }
+                });
+            }
             feedback.text('Processing...');
             progress.show();
             $.post(AiWpSeoCheck.ajaxUrl, {

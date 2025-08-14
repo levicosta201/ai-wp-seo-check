@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       AI WP SEO Check
  * Description:       Adjust post and page content SEO using OpenAI suggestions.
- * Version:           0.1.2
+ * Version:           0.1.3
  * Requires at least: 6.3
  * Requires PHP:      8.1
- * Author:            OpenAI
+ * Author:            Digivate
  * Text Domain:       ai-wp-seo-check
  */
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 exit; // Exit if accessed directly.
 }
 
-define( 'AI_WP_SEO_CHECK_VERSION', '0.1.2' );
+define( 'AI_WP_SEO_CHECK_VERSION', '0.1.3' );
 define( 'AI_WP_SEO_CHECK_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AI_WP_SEO_CHECK_URL', plugin_dir_url( __FILE__ ) );
 
