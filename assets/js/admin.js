@@ -11,7 +11,8 @@
                 feedback.text('Missing API key.');
                 return;
             }
-            var content = wp.data.select('core/editor').getEditedPostContent();
+            var editorSelect = window.wp && wp.data && wp.data.select ? wp.data.select('core/editor') : null;
+            var content = editorSelect && editorSelect.getEditedPostContent ? editorSelect.getEditedPostContent() : $('#content').val();
             feedback.text('Processing...');
             progress.show();
             $.post(AiWpSeoCheck.ajaxUrl, {
@@ -21,7 +22,12 @@
             }).done(function(resp){
                 if (resp.success) {
                     if (resp.data.changed) {
-                        wp.data.dispatch('core/editor').editPost({content: resp.data.content});
+                        var editorDispatch = window.wp && wp.data && wp.data.dispatch ? wp.data.dispatch('core/editor') : null;
+                        if (editorDispatch && editorDispatch.editPost) {
+                            editorDispatch.editPost({content: resp.data.content});
+                        } else {
+                            $('#content').val(resp.data.content);
+                        }
                         if (resp.data.changes && resp.data.changes.length) {
                             var list = '<ul>';
                             resp.data.changes.forEach(function(change){
